@@ -82,7 +82,7 @@ function Register({ t }) {
                   <Label for="password">{t('authForm.passwordLabel')}</Label>
                   <Field
                     className="form-control"
-                    type="text"
+                    type="password"
                     id="password"
                     name="password"
                     placeholder={t('authForm.passwordPlaceholder')}

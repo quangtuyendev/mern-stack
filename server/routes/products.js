@@ -5,5 +5,4 @@ const product = require('../controllers/product');
 
 router.get('/', isAuth, product.getAllProduct)
 
-
 module.exports = router;

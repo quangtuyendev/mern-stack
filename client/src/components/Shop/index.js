@@ -1,31 +1,41 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { withTranslation } from 'react-i18next';
-import { Col, Container, Row } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import Header from './Header';
+import Loading from '../common/Loading';
+import SearchBox from './SearchBox';
 
 ShopPage.propTypes = {
   t: PropTypes.func.isRequired,
+  searchResult: PropTypes.string,
   children: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
+  handleSearchProducts: PropTypes.func.isRequired,
 };
 
-function ShopPage({ children, loading, t }) {
+ShopPage.defaultProps = {
+  searchResult: '',
+};
+
+function ShopPage({ searchResult, children, loading, handleSearchProducts }) {
   return (
     <>
       <Header />
       {!loading ? (
         <Container>
+          <Row>
+            <Col sm="12">
+              <SearchBox
+                searchResult={searchResult}
+                handleSearchProducts={handleSearchProducts}
+              />
+            </Col>
+          </Row>
           <Row>{children}</Row>
         </Container>
       ) : (
-        <Container>
-          <Row>
-            <Col sm="12">
-              <h5 className="display-4">{t('loading')}</h5>
-            </Col>
-          </Row>
-        </Container>
+        <Loading />
       )}
     </>
   );

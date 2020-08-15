@@ -4,8 +4,8 @@ import { withTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Container } from 'reactstrap';
-import { signout } from '../../actions';
-import { AuthContext } from '../../contexts/AuthContext';
+import { signout } from '../../actions/auth';
+import { AuthContext } from '../../contexts/AuthProvider';
 import ChangeLanguage from './ChangeLanguage';
 
 Navbar.propTypes = {

@@ -5,9 +5,9 @@ import { withTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Button, Col, Container, FormGroup, Label, Row } from 'reactstrap';
-import { signin } from '../../actions';
+import { signin } from '../../actions/auth';
 import { authApi } from '../../api/authApi';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from '../../contexts/AuthProvider';
 import { SigninSchema } from '../../formikSchema/formikSchemaConfig';
 
 Signin.propTypes = {
@@ -74,7 +74,7 @@ function Signin({ t }) {
                   <Label for="password">{t('authForm.passwordLabel')}</Label>
                   <Field
                     className="form-control"
-                    type="text"
+                    type="password"
                     id="password"
                     name="password"
                     placeholder={t('authForm.passwordPlaceholder')}

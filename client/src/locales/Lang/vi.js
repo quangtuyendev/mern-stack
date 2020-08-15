@@ -11,6 +11,9 @@ export const vi = {
   },
   loading: 'Đang tải...',
   addToCart: 'Thêm vào giỏ',
+  searchResultMsg: 'Kết quả tìm kiếm cho',
+  searchBoxPlaceholder: 'Tiềm kiếm sản phầm',
+  searchBtn: 'Tìm kiếm',
   authForm: {
     userNameLabel: 'Nhập tên người dùng',
     userNamePlaceholder: 'Tên người dùng',

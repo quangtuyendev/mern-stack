@@ -11,6 +11,9 @@ export const en = {
   },
   loading: 'Loading...',
   addToCart: 'Add to cart',
+  searchResultMsg: 'Search result for',
+  searchBoxPlaceholder: 'Search for products',
+  searchBtn: 'Search',
   authForm: {
     userNameLabel: 'Enter your user name',
     userNamePlaceholder: 'User name',

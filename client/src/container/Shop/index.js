@@ -4,30 +4,38 @@ import { productApi } from '../../api/productApi';
 import Layout from '../../components/Layout';
 import ShopPage from '../../components/Shop';
 import ProductItem from '../../components/Shop/ProductItem';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from '../../contexts/AuthProvider';
+import { LoadingContext } from '../../contexts/LoadingProvider';
+import { showLoading, hideLoading } from '../../actions/loading';
 
 function ShopContainer() {
+  const { loading, dispatch: LoadingDispatch } = useContext(LoadingContext);
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState('');
   const token = localStorage.getItem('token') || '';
+
   const {
     auth: { isAuthenticated },
   } = useContext(AuthContext);
   const history = useHistory();
 
+  function handleSearchProducts(searchValue) {
+    setSearch(searchValue);
+  }
+
   useEffect(() => {
     async function fetchProducts() {
       try {
-        setLoading(true);
-        const { data } = await productApi.fetchProducts();
-        setLoading(false);
+        LoadingDispatch(showLoading());
+        const { data } = await productApi.fetchProducts(search);
+        LoadingDispatch(hideLoading());
         setProducts(data);
       } catch (error) {
         console.log('Failed to fetch product list: ', error.message);
       }
     }
     if (isAuthenticated) fetchProducts();
-  }, [token, isAuthenticated]);
+  }, [token, isAuthenticated, LoadingDispatch, search]);
 
   useEffect(() => {
     document.title = 'Shop - MERN';
@@ -39,7 +47,13 @@ function ShopContainer() {
   }
   return isAuthenticated ? (
     <Layout>
-      <ShopPage loading={loading}>{renderProducts()}</ShopPage>
+      <ShopPage
+        searchResult={search}
+        handleSearchProducts={handleSearchProducts}
+        loading={loading}
+      >
+        {renderProducts()}
+      </ShopPage>
     </Layout>
   ) : null;
 }

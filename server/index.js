@@ -9,7 +9,7 @@ const cors = require('cors');
 const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
 
-app.use(cors({ origin: 'https://mern-stack-nqt.herokuapp.com' }))
+app.use(cors({ origin: ['https://mern-stack-nqt.herokuapp.com', 'http://localhost:3000'] }))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
