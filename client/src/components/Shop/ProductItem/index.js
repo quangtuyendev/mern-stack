@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { withTranslation } from 'react-i18next';
+import slugify from 'slugify';
+import { Link } from 'react-router-dom';
+
 import {
   Button,
   Card,
@@ -18,14 +21,18 @@ ProductItem.propTypes = {
   description: PropTypes.string.isRequired,
 };
 
-function ProductItem({ title, images, description, t }) {
+function ProductItem({ _id, title, images, description, t }) {
   return (
     <Col sm={4}>
       <Card>
-        <CardImg top width="100%" src={images[0]} alt={title} />
+        <Link title={title} to={`/${slugify(title.toLowerCase())}/${_id}`}>
+          <CardImg top width="100%" src={images[0]} alt={title} />
+        </Link>
         <CardBody>
           <CardTitle>
-            <h4>{title}</h4>
+            <Link title={title} to={`/${slugify(title.toLowerCase())}/${_id}`}>
+              <h4>{title}</h4>
+            </Link>
           </CardTitle>
           <CardText>{description}</CardText>
           <Button color="primary" size="lg">

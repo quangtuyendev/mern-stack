@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const config = require('../config');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 async function register(req, res) {
   const { email, username, password } = req.body;
@@ -8,10 +9,12 @@ async function register(req, res) {
   if (user) {
     return res.status(400).json({ msg: 'Email already exists' });
   }
+  const salt = await bcrypt.genSalt(10);
+  const hash = await bcrypt.hash(password, salt);
   const newUser = new User({
     email,
     username,
-    password,
+    password: hash,
   });
   await newUser.save();
   res.status(201).json({ msg: 'Register successful' })
@@ -22,8 +25,11 @@ async function signin(req, res) {
   const userInfo = await User.findOne({ email });
   if (!userInfo) {
     return res.status(404).send({ msg: 'Email is not correct' });
-  } else if (userInfo.password !== password) {
+  }
+  const isMatch = await bcrypt.compare(password, userInfo.password);
+  if (!isMatch) {
     return res.status(404).send({ msg: 'Password is not correct' });
+
   }
   res.status(200).json({
     username: userInfo.username,

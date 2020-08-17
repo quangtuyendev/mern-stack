@@ -23,5 +23,9 @@ export const en = {
     passwordPlaceholder: 'Password',
     signinBtn: 'Signin',
     registerBtn: 'Register',
+    requiredEmail: 'Email is required',
+    validEmail: 'Email must be a valid email',
+    requiredPass: 'Password is required',
+    minPass: 'Password must be at least 8 characters',
   },
 };

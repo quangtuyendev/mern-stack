@@ -12,7 +12,7 @@ export const vi = {
   loading: 'Đang tải...',
   addToCart: 'Thêm vào giỏ',
   searchResultMsg: 'Kết quả tìm kiếm cho',
-  searchBoxPlaceholder: 'Tiềm kiếm sản phầm',
+  searchBoxPlaceholder: 'Tìm kiếm sản phẩm',
   searchBtn: 'Tìm kiếm',
   authForm: {
     userNameLabel: 'Nhập tên người dùng',
@@ -23,5 +23,9 @@ export const vi = {
     passwordPlaceholder: 'Mật khẩu',
     signinBtn: 'Đăng nhập',
     registerBtn: 'Đăng ký',
+    requiredEmail: 'Bạn phải nhập email',
+    validEmail: 'Bạn cần nhập một email hợp lệ',
+    requiredPass: 'Bạn phải nhập mật khẩu',
+    minPass: 'Mật khẩu tối thiểu là 8 ký tự',
   },
 };

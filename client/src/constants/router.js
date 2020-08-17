@@ -1,12 +1,18 @@
+import NotFound from '../container/NotFound';
+import ProductDetailsContainer from '../container/ProductDetails';
+import RegisterContainer from '../container/Register';
 import ShopContainer from '../container/Shop';
 import SigninContainer from '../container/Signin';
-import RegisterContainer from '../container/Register';
-import NotFound from '../container/NotFound';
 
 export const ROUTERS = [
   {
     path: '/shop',
     component: ShopContainer,
+    exact: true,
+  },
+  {
+    path: '/*/:id',
+    component: ProductDetailsContainer,
     exact: true,
   },
   {

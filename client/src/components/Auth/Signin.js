@@ -1,3 +1,4 @@
+import * as Yup from 'yup';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import PropTypes from 'prop-types';
 import React, { useContext, useState } from 'react';
@@ -8,13 +9,21 @@ import { Button, Col, Container, FormGroup, Label, Row } from 'reactstrap';
 import { signin } from '../../actions/auth';
 import { authApi } from '../../api/authApi';
 import { AuthContext } from '../../contexts/AuthProvider';
-import { SigninSchema } from '../../formikSchema/formikSchemaConfig';
 
 Signin.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
 function Signin({ t }) {
+  const SigninSchema = Yup.object().shape({
+    email: Yup.string()
+      .required(t('authForm.requiredEmail'))
+      .email(t('authForm.validEmail')),
+    password: Yup.string()
+      .required(t('authForm.requiredPass'))
+      .min(8, t('authForm.minPass')),
+  });
+
   const history = useHistory();
   const [error, setError] = useState();
   const { dispatch } = useContext(AuthContext);

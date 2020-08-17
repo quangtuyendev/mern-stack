@@ -20,7 +20,7 @@ function ChangeLanguage({ i18n }) {
       className="custom-select"
     >
       <option value="en">English</option>
-      <option value="vi">Vietnamse</option>
+      <option value="vi">Vietnamese</option>
     </select>
   );
 }

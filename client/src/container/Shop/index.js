@@ -7,9 +7,10 @@ import ProductItem from '../../components/Shop/ProductItem';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { LoadingContext } from '../../contexts/LoadingProvider';
 import { showLoading, hideLoading } from '../../actions/loading';
+import ProductList from '../../components/Shop/ProductList';
 
 function ShopContainer() {
-  const { loading, dispatch: LoadingDispatch } = useContext(LoadingContext);
+  const { loading, dispatch: loadingDispatch } = useContext(LoadingContext);
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState('');
   const token = localStorage.getItem('token') || '';
@@ -26,16 +27,16 @@ function ShopContainer() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        LoadingDispatch(showLoading());
+        loadingDispatch(showLoading());
         const { data } = await productApi.fetchProducts(search);
-        LoadingDispatch(hideLoading());
+        loadingDispatch(hideLoading());
         setProducts(data);
       } catch (error) {
         console.log('Failed to fetch product list: ', error.message);
       }
     }
     if (isAuthenticated) fetchProducts();
-  }, [token, isAuthenticated, LoadingDispatch, search]);
+  }, [token, isAuthenticated, loadingDispatch, search]);
 
   useEffect(() => {
     document.title = 'Shop - MERN';
@@ -52,7 +53,7 @@ function ShopContainer() {
         handleSearchProducts={handleSearchProducts}
         loading={loading}
       >
-        {renderProducts()}
+        <ProductList>{renderProducts()}</ProductList>
       </ShopPage>
     </Layout>
   ) : null;

@@ -14,9 +14,19 @@ async function getAllProduct(req, res, next) {
         }))
         res.status(200).json(products);
     } catch (error) {
-        res.status(400).json({ msg: 'Fetch products faild' });       
+        res.status(400).json({ msg: 'Fetch products failed' });       
+    }
+}
+
+async function getProductDetails(req, res, next) {
+    const { id } = req.params;
+    try {
+        const product = await Product.findOne({_id: id})
+        res.status(200).json(product);
+    } catch (error) {
+        res.status(400).json({ msg: 'Fetch product detail failed' });       
     }
 }
 
 
-module.exports = { getAllProduct }
+module.exports = { getAllProduct, getProductDetails };

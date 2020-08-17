@@ -19,6 +19,7 @@
     "react-scripts": "3.4.1",
     "react-toastify": "^6.0.8",
     "reactstrap": "^8.5.1",
+    "slugify": "^1.4.5",
     "yup": "^0.29.3"
   },
   "scripts": {

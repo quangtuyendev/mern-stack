@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { withTranslation } from 'react-i18next';
+import { Col, Row } from 'reactstrap';
 
 SearchBox.propTypes = {
   handleSearchProducts: PropTypes.func.isRequired,
@@ -24,27 +25,29 @@ function SearchBox({ handleSearchProducts, searchResult, t }) {
     handleSearchProducts(search);
   }
   return (
-    <>
-      <form
-        onSubmit={handleSubmit}
-        className="form-inline products-form-search"
-      >
-        <input
-          onChange={handleChange}
-          className="form-control mr-sm-2"
-          type="text"
-          placeholder={t('searchBoxPlaceholder')}
-        />
-        <button className="btn btn-primary my-2 my-sm-0" type="submit">
-          {t('searchBtn')}
-        </button>
-      </form>
-      {searchResult && (
-        <h5 className="my-3">
-          {t('searchResultMsg')}: {searchResult}
-        </h5>
-      )}
-    </>
+    <Row>
+      <Col sm="12">
+        <form
+          onSubmit={handleSubmit}
+          className="form-inline products-form-search"
+        >
+          <input
+            onChange={handleChange}
+            className="form-control mr-sm-2"
+            type="text"
+            placeholder={t('searchBoxPlaceholder')}
+          />
+          <button className="btn btn-primary my-2 my-sm-0" type="submit">
+            {t('searchBtn')}
+          </button>
+        </form>
+        {searchResult && (
+          <h5 className="my-3">
+            {t('searchResultMsg')}: {searchResult}
+          </h5>
+        )}
+      </Col>
+    </Row>
   );
 }
 
