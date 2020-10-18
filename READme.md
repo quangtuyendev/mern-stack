@@ -1,6 +1,6 @@
 This project was created with the [Create React App](https://github.com/facebook/create-react-app).
 
-# A simple MERN Stack Web
+# A simple MERN Stack
 [Live](https://mern-stack-nqt.herokuapp.com/signin)
 
 Config server:
